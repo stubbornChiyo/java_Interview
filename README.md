@@ -96,6 +96,25 @@
   * [Other fun question](#other-fun-question)
     * [1\.一条SQL语句执行得很慢的原因有哪些](#1%E4%B8%80%E6%9D%A1sql%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E5%BE%97%E5%BE%88%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%9C%89%E5%93%AA%E4%BA%9B)
     * [2\.大表优化方案](#2%E5%A4%A7%E8%A1%A8%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88)
+* [Redis](#redis)
+    * [1\.简述缓存的基本思想](#1%E7%AE%80%E8%BF%B0%E7%BC%93%E5%AD%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3)
+    * [2\.为什么要用分布式缓存 \- 不直接用本地缓存](#2%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98---%E4%B8%8D%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98)
+    * [3\.缓存读写模式及更新策略](#3%E7%BC%93%E5%AD%98%E8%AF%BB%E5%86%99%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5)
+      * [Read/Write Through Pattern（读写穿透）](#readwrite-through-pattern%E8%AF%BB%E5%86%99%E7%A9%BF%E9%80%8F)
+      * [Write Behind Pattern（异步缓存写入）](#write-behind-pattern%E5%BC%82%E6%AD%A5%E7%BC%93%E5%AD%98%E5%86%99%E5%85%A5)
+    * [4\.简单介绍一下redis](#4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Bredis)
+    * [5\.redis和memcached的区别和共同点](#5redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%85%B1%E5%90%8C%E7%82%B9)
+    * [6\.为什么要用缓存/为什么要用redis](#6%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BC%93%E5%AD%98%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8redis)
+    * [7\.常见数据结构及使用场景](#7%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
+    * [8\.为什么redis选择单线程模型](#8%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%80%89%E6%8B%A9%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B)
+    * [9\.redis给缓存数据设置过期时间有啥用](#9redis%E7%BB%99%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E8%AE%BE%E7%BD%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E6%9C%89%E5%95%A5%E7%94%A8)
+    * [10\.如何判断数据是否过期的及过期数据的删除策略](#10%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E8%BF%87%E6%9C%9F%E7%9A%84%E5%8F%8A%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5)
+    * [11\.内存淘汰机制了解吗](#11%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6%E4%BA%86%E8%A7%A3%E5%90%97)
+    * [12\.怎么保证redis挂掉之后再重启数据可以进行恢复（redis的持久化）](#12%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81redis%E6%8C%82%E6%8E%89%E4%B9%8B%E5%90%8E%E5%86%8D%E9%87%8D%E5%90%AF%E6%95%B0%E6%8D%AE%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E6%81%A2%E5%A4%8Dredis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96)
+    * [13\.redis可以实现事务吗？如何实现的](#13redis%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%BA%8B%E5%8A%A1%E5%90%97%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84)
+    * [14\.谈一下缓存穿透](#14%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F)
+    * [15\.谈一下缓存雪崩](#15%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9)
+    * [16\.如何保证缓存和数据库数据的一致性](#16%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7)
 
 # 并发
 
@@ -287,3 +306,80 @@
 
 ### 2.大表优化方案
 
+# Redis
+
+### 1.简述缓存的基本思想
+
+- 可以提高系统性能以及减少请求响应时间。基本思想是空间换时间,cpu缓存的是内存数据-用于解决CPU运算速度和内存读写速度不匹配的问题 内存缓存的是硬盘的数据 用于解决硬盘访问速度过慢的问题 操作系统在页表方案基础上引入快表加速虚拟地址到物理地址的转换 那么块表可以理解为一种特殊的高速缓冲存储器。从业务的角度,为了避免用户在请求数据时获取速度过于缓慢，在数据库之上增加了缓存
+
+### 2.为什么要用分布式缓存 - 不直接用本地缓存
+
+- 本地缓存对分布式架构支持不友好 - 本地缓存只在当前机器上 同一个相同服务部署在多台服务器上，各个服务之间的缓存无法共享
+- 本地缓存容量受服务器部署所在的机器限制 - 如果当前系统服务耗费的内存多，本地缓存可用的容量就很少
+
+使用分布式缓存后，缓存部署在一台单独的服务器上，即使同一份服务部署在多台服务器上，使用的是同一份缓存。单独分布式缓存服务的性能 容量和提供的功能都要强大
+
+### 3.缓存读写模式及更新策略
+
+- Cache Aside Pattern（旁路缓存模式）
+
+写：更新 DB，然后直接删除 cache 。
+
+读：从 cache 中读取数据，读取到就直接返回，读取不到的话，就从 DB 中取数据返回，然后再把数据放到 cache 中。
+
+Cache Aside Pattern 中服务端需要同时维系 DB 和 cache，并且是以 DB 的结果为准。另外，Cache Aside Pattern 有首次请求数据一定不在 cache 的问题，对于热点数据可以提前放入缓存中。
+
+**Cache Aside Pattern 是我们平时使用比较多的一个缓存读写模式，比较适合读请求比较多的场景。**
+
+- ####  Read/Write Through Pattern（读写穿透）
+
+Read/Write Through 套路是：服务端把 cache 视为主要数据存储，从中读取数据并将数据写入其中。cache 服务负责将此数据读取和写入 DB，从而减轻了应用程序的职责。
+
+1. 写（Write Through）：先查 cache，cache 中不存在，直接更新 DB。 cache 中存在，则先更新 cache，然后 cache 服务自己更新 DB（**同步更新 cache 和 DB**）。
+2. 读(Read Through)： 从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。
+
+Read-Through Pattern 实际只是在 Cache-Aside Pattern 之上进行了封装。在 Cache-Aside Pattern 下，发生读请求的时候，如果 cache 中不存在对应的数据，是由客户端自己负责把数据写入 cache，而 Read Through Pattern 则是 cache 服务自己来写入缓存的，这对客户端是透明的。
+
+和 Cache Aside Pattern 一样， Read-Through Pattern 也有首次请求数据一定不再 cache 的问题，对于热点数据可以提前放入缓存中。
+
+- #### Write Behind Pattern（异步缓存写入）
+
+Write Behind Pattern 和 Read/Write Through Pattern 很相似，两者都是由 cache 服务来负责 cache 和 DB 的读写。
+
+但是，两个又有很大的不同：**Read/Write Through 是同步更新 cache 和 DB，而 Write Behind Caching 则是只更新缓存，不直接更新 DB，而是改为异步批量的方式来更新 DB。**
+
+**Write Behind Pattern 下 DB 的写性能非常高，尤其适合一些数据经常变化的业务场景比如说一篇文章的点赞数量、阅读数量。** 往常一篇文章被点赞 500 次的话，需要重复修改 500 次 DB，但是在 Write Behind Pattern 下可能只需要修改一次 DB 就可以了。
+
+但是，这种模式同样也给 DB 和 Cache 一致性带来了新的考验，很多时候如果数据还没异步更新到 DB 的话，Cache 服务宕机就 gg 了。
+
+### 4.简单介绍一下redis
+
+c语言开发的数据库,数据是存放在内存中的，所以读写速度非常快。被广泛用于缓存方向，除此之外 经常被用来用分布式锁/消息队列等 提供了多种数据类型来支持不同的业务场景，支持事务/持久化/Lua脚本/多种集群方案
+
+### 5.redis和memcached的区别和共同点
+
+https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/Redis/redis-all.md
+
+### 6.为什么要用缓存/为什么要用redis
+
+### 7.常见数据结构及使用场景
+
+### 8.为什么redis选择单线程模型
+
+https://draveness.me/whys-the-design-redis-single-thread/
+
+### 9.redis给缓存数据设置过期时间有啥用
+
+### 10.如何判断数据是否过期的及过期数据的删除策略
+
+### 11.内存淘汰机制了解吗
+
+### 12.怎么保证redis挂掉之后再重启数据可以进行恢复（redis的持久化）
+
+### 13.redis可以实现事务吗？如何实现的
+
+### 14.谈一下缓存穿透
+
+### 15.谈一下缓存雪崩
+
+### 16.如何保证缓存和数据库数据的一致性
