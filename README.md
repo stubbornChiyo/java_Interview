@@ -1,50 +1,62 @@
 # java_Interview
+
 看目录自己面试，答案在下边,会慢慢补充。
 
 * [并发](#%E5%B9%B6%E5%8F%91)
-  * [基础](#%E5%9F%BA%E7%A1%80)
-    * [1\.线程进程含义&amp;关系&amp;区别&amp;优缺点](#1%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B%E5%90%AB%E4%B9%89%E5%85%B3%E7%B3%BB%E5%8C%BA%E5%88%AB%E4%BC%98%E7%BC%BA%E7%82%B9)
-    * [2\.并发与并行的区别](#2%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB)
-    * [3\.为何使用多线程 可能带来的问题](#3%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%8F%AF%E8%83%BD%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98)
-    * [4\.线程的生命周期和状态](#4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E7%8A%B6%E6%80%81)
-    * [5\.什么是上下文切换](#5%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2)
-    * [6\.线程死锁？如何避免？](#6%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D)
-    * [7\.sleep()方法和wait()方法的区别/共同点](#7sleep%E6%96%B9%E6%B3%95%E5%92%8Cwait%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E5%85%B1%E5%90%8C%E7%82%B9)
-    * [8\.是否可以直接调用run()  不限start()再run()?](#8%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8run--%E4%B8%8D%E9%99%90start%E5%86%8Drun)
-  * [synchronized](#synchronized)
-    * [1\.谈谈自己对于synchronized关键字的了解](#1%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E5%AF%B9%E4%BA%8Esynchronized%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BA%86%E8%A7%A3)
-    * [2\.谈谈自己是怎么使用此关键字](#2%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97)
-    * [3\.构造方法可以使用他修饰吗](#3%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%96%E4%BF%AE%E9%A5%B0%E5%90%97)
-    * [4\.谈下底层原理](#4%E8%B0%88%E4%B8%8B%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86)
-    * [5\.谈下1\.6后底层做了哪些优化,详细介绍一下](#5%E8%B0%88%E4%B8%8B16%E5%90%8E%E5%BA%95%E5%B1%82%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8C%96%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B)
-    * [6\.谈谈synchronized和ReentrantLock区别](#6%E8%B0%88%E8%B0%88synchronized%E5%92%8Creentrantlock%E5%8C%BA%E5%88%AB)
-  * [volatile](#volatile)
-    * [1\.CPU缓存模型](#1cpu%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B)
-    * [2\.讲一下JMM](#2%E8%AE%B2%E4%B8%80%E4%B8%8Bjmm)
-    * [3\.并发编程的三个重要特性](#3%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7)
-    * [4\.介绍一下对此关键字的理解](#4%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E5%AF%B9%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3)
-    * [5\.synchronized 与volatile 的区别](#5synchronized-%E4%B8%8Evolatile-%E7%9A%84%E5%8C%BA%E5%88%AB)
-  * [ThreadLocal](#threadlocal)
-    * [1\.介绍一下是什么及原理](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%8F%8A%E5%8E%9F%E7%90%86)
-    * [2\.ThreadLocal 内存泄漏的问题](#2threadlocal-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98)
-  * [线程池](#%E7%BA%BF%E7%A8%8B%E6%B1%A0)
-    * [1\.为什么要使用线程池](#1%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0)
-    * [2\.实现Runnable和Callable接口的区别](#2%E5%AE%9E%E7%8E%B0runnable%E5%92%8Ccallable%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB)
-    * [3\.execute（） 与submit（） 区别](#3execute-%E4%B8%8Esubmit-%E5%8C%BA%E5%88%AB)
-    * [4\.如何创建线程池](#4%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0)
-    * [5\.ThreadPoolExecutor类分析](#5threadpoolexecutor%E7%B1%BB%E5%88%86%E6%9E%90)
-    * [6\.谈下原理](#6%E8%B0%88%E4%B8%8B%E5%8E%9F%E7%90%86)
-  * [Atomic 原子类](#atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB)
-    * [1\.介绍一下 \.\.](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-)
-    * [2\.JUC包中的原子类是哪四类](#2juc%E5%8C%85%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%98%AF%E5%93%AA%E5%9B%9B%E7%B1%BB)
-    * [3\.讲讲AtomicInteger的使用](#3%E8%AE%B2%E8%AE%B2atomicinteger%E7%9A%84%E4%BD%BF%E7%94%A8)
-    * [4\.简单介绍一下AtomicInteger类的原理](#4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Batomicinteger%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86)
-  * [AQS](#aqs)
-    * [1\.介绍一下AQS](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Baqs)
-    * [2\.AQS原理分析](#2aqs%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90)
-    * [3\.组件](#3%E7%BB%84%E4%BB%B6)
-    * [4\.用过CountDownLatch吗 什么场景用的](#4%E7%94%A8%E8%BF%87countdownlatch%E5%90%97-%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E7%94%A8%E7%9A%84)
-  * [Reference](#reference)
+    * [基础](#%E5%9F%BA%E7%A1%80)
+      * [1\.线程进程含义&amp;关系&amp;区别&amp;优缺点](#1%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B%E5%90%AB%E4%B9%89%E5%85%B3%E7%B3%BB%E5%8C%BA%E5%88%AB%E4%BC%98%E7%BC%BA%E7%82%B9)
+      * [2\.并发与并行的区别](#2%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB)
+      * [3\.为何使用多线程 可能带来的问题](#3%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%8F%AF%E8%83%BD%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98)
+      * [4\.线程的生命周期和状态](#4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E7%8A%B6%E6%80%81)
+      * [5\.什么是上下文切换](#5%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2)
+      * [6\.线程死锁？如何避免？](#6%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D)
+      * [7\.sleep()方法和wait()方法的区别/共同点](#7sleep%E6%96%B9%E6%B3%95%E5%92%8Cwait%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E5%85%B1%E5%90%8C%E7%82%B9)
+      * [8\.是否可以直接调用run()  不限start()再run()?](#8%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8run--%E4%B8%8D%E9%99%90start%E5%86%8Drun)
+      * [9\.用过CAS吗？会发生什么问题？怎么解决？](#9%E7%94%A8%E8%BF%87cas%E5%90%97%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3)
+      * [10\.如何创建多线程？](#10%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B)
+    * [synchronized](#synchronized)
+      * [1\.谈谈自己对于synchronized关键字的了解](#1%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E5%AF%B9%E4%BA%8Esynchronized%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BA%86%E8%A7%A3)
+      * [2\.谈谈自己是怎么使用此关键字](#2%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97)
+      * [3\.构造方法可以使用他修饰吗](#3%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%96%E4%BF%AE%E9%A5%B0%E5%90%97)
+      * [4\.谈下底层原理](#4%E8%B0%88%E4%B8%8B%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86)
+      * [5\.谈下1\.6后底层做了哪些优化,详细介绍一下](#5%E8%B0%88%E4%B8%8B16%E5%90%8E%E5%BA%95%E5%B1%82%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8C%96%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B)
+      * [6\.谈谈synchronized和ReentrantLock区别](#6%E8%B0%88%E8%B0%88synchronized%E5%92%8Creentrantlock%E5%8C%BA%E5%88%AB)
+    * [volatile](#volatile)
+      * [1\.CPU缓存模型](#1cpu%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B)
+      * [2\.讲一下JMM](#2%E8%AE%B2%E4%B8%80%E4%B8%8Bjmm)
+      * [3\.并发编程的三个重要特性](#3%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7)
+      * [4\.介绍一下对此关键字的理解](#4%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E5%AF%B9%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3)
+      * [5\.synchronized 与volatile 的区别](#5synchronized-%E4%B8%8Evolatile-%E7%9A%84%E5%8C%BA%E5%88%AB)
+    * [ThreadLocal](#threadlocal)
+      * [1\.介绍一下是什么及原理、运用场景](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%8F%8A%E5%8E%9F%E7%90%86%E8%BF%90%E7%94%A8%E5%9C%BA%E6%99%AF)
+      * [2\.ThreadLocal 内存泄漏的问题](#2threadlocal-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98)
+    * [线程池](#%E7%BA%BF%E7%A8%8B%E6%B1%A0)
+      * [1\.为什么要使用线程池](#1%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0)
+      * [2\.实现Runnable和Callable接口的区别](#2%E5%AE%9E%E7%8E%B0runnable%E5%92%8Ccallable%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB)
+      * [3\.execute（） 与submit（） 区别](#3execute-%E4%B8%8Esubmit-%E5%8C%BA%E5%88%AB)
+      * [4\.如何创建线程池](#4%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0)
+      * [5\.ThreadPoolExecutor类分析](#5threadpoolexecutor%E7%B1%BB%E5%88%86%E6%9E%90)
+      * [6\.谈下原理](#6%E8%B0%88%E4%B8%8B%E5%8E%9F%E7%90%86)
+      * [7\.谈一下线程池七大参数及拒绝策略？](#7%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%83%E5%A4%A7%E5%8F%82%E6%95%B0%E5%8F%8A%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5)
+    * [Atomic 原子类](#atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB)
+      * [1\.介绍一下，不使用它会有什么问题 \.\.](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%AE%83%E4%BC%9A%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98-)
+      * [2\.JUC包中的原子类是哪四类](#2juc%E5%8C%85%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%98%AF%E5%93%AA%E5%9B%9B%E7%B1%BB)
+      * [3\.讲讲AtomicInteger的使用](#3%E8%AE%B2%E8%AE%B2atomicinteger%E7%9A%84%E4%BD%BF%E7%94%A8)
+      * [4\.简单介绍一下AtomicInteger类的原理](#4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Batomicinteger%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86)
+    * [AQS](#aqs)
+      * [1\.介绍一下AQS](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Baqs)
+      * [2\.AQS原理分析](#2aqs%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90)
+      * [3\.组件](#3%E7%BB%84%E4%BB%B6)
+    * [Reference](#reference)
+      * [1\.谈一下强软弱虚引用，各有哪些应用场景？](#1%E8%B0%88%E4%B8%80%E4%B8%8B%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8%E5%90%84%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF)
+    * [JUC](#juc)
+      * [1\.用过CountDownLatch、CyclicBarrier、Semaphore吗 什么场景用的？有什么区别？能否复用？](#1%E7%94%A8%E8%BF%87countdownlatchcyclicbarriersemaphore%E5%90%97-%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E7%94%A8%E7%9A%84%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E8%83%BD%E5%90%A6%E5%A4%8D%E7%94%A8)
+      * [2\.聊一下HashMap底层原理，有过什么变化，会发生什么问题？对应的支持高并发的类聊下原理？](#2%E8%81%8A%E4%B8%80%E4%B8%8Bhashmap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%9C%89%E8%BF%87%E4%BB%80%E4%B9%88%E5%8F%98%E5%8C%96%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E5%AF%B9%E5%BA%94%E7%9A%84%E6%94%AF%E6%8C%81%E9%AB%98%E5%B9%B6%E5%8F%91%E7%9A%84%E7%B1%BB%E8%81%8A%E4%B8%8B%E5%8E%9F%E7%90%86)
+      * [3\.聊一下线程安全的list、set，底层原理（CopyOnWriteArrayList、CopyOnwriteArraySet）](#3%E8%81%8A%E4%B8%80%E4%B8%8B%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84listset%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86copyonwritearraylistcopyonwritearrayset)
+      * [4\.聊一下ConcurrentSkipListMap，有哪些应用场景](#4%E8%81%8A%E4%B8%80%E4%B8%8Bconcurrentskiplistmap%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF)
+      * [5\.Feture接口是怎么使用的？](#5feture%E6%8E%A5%E5%8F%A3%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E7%9A%84)
+      * [6\.聊一下锁机制？什么是非公平锁/公平锁/可重入锁/互斥锁？](#6%E8%81%8A%E4%B8%80%E4%B8%8B%E9%94%81%E6%9C%BA%E5%88%B6%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E5%85%AC%E5%B9%B3%E9%94%81%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E4%BA%92%E6%96%A5%E9%94%81)
+      * [7\.阻塞队列和非阻塞队列有什么区别？有哪些运用场景？](#7%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%E8%BF%90%E7%94%A8%E5%9C%BA%E6%99%AF)
 * [Mysql](#mysql)
   * [架构相关](#%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3)
     * [1\.结合MySQL架构，聊一下SQL的执行过程](#1%E7%BB%93%E5%90%88mysql%E6%9E%B6%E6%9E%84%E8%81%8A%E4%B8%80%E4%B8%8Bsql%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B)
@@ -97,32 +109,64 @@
     * [1\.一条SQL语句执行得很慢的原因有哪些](#1%E4%B8%80%E6%9D%A1sql%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E5%BE%97%E5%BE%88%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%9C%89%E5%93%AA%E4%BA%9B)
     * [2\.大表优化方案](#2%E5%A4%A7%E8%A1%A8%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88)
 * [Redis](#redis)
-    * [1\.简述缓存的基本思想](#1%E7%AE%80%E8%BF%B0%E7%BC%93%E5%AD%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3)
-    * [2\.为什么要用分布式缓存 \- 不直接用本地缓存](#2%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98---%E4%B8%8D%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98)
-    * [3\.缓存读写模式及更新策略](#3%E7%BC%93%E5%AD%98%E8%AF%BB%E5%86%99%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5)
-      * [Read/Write Through Pattern（读写穿透）](#readwrite-through-pattern%E8%AF%BB%E5%86%99%E7%A9%BF%E9%80%8F)
-      * [Write Behind Pattern（异步缓存写入）](#write-behind-pattern%E5%BC%82%E6%AD%A5%E7%BC%93%E5%AD%98%E5%86%99%E5%85%A5)
-    * [4\.简单介绍一下redis](#4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Bredis)
-    * [5\.redis和memcached的区别和共同点](#5redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%85%B1%E5%90%8C%E7%82%B9)
-    * [6\.为什么要用缓存/为什么要用redis](#6%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BC%93%E5%AD%98%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8redis)
-    * [7\.常见数据结构及使用场景](#7%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
-    * [8\.为什么redis选择单线程模型](#8%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%80%89%E6%8B%A9%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B)
-    * [9\.redis给缓存数据设置过期时间有啥用](#9redis%E7%BB%99%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E8%AE%BE%E7%BD%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E6%9C%89%E5%95%A5%E7%94%A8)
-    * [10\.如何判断数据是否过期的及过期数据的删除策略](#10%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E8%BF%87%E6%9C%9F%E7%9A%84%E5%8F%8A%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5)
-    * [11\.内存淘汰机制了解吗](#11%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6%E4%BA%86%E8%A7%A3%E5%90%97)
-    * [12\.怎么保证redis挂掉之后再重启数据可以进行恢复（redis的持久化）](#12%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81redis%E6%8C%82%E6%8E%89%E4%B9%8B%E5%90%8E%E5%86%8D%E9%87%8D%E5%90%AF%E6%95%B0%E6%8D%AE%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E6%81%A2%E5%A4%8Dredis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96)
-    * [13\.redis可以实现事务吗？如何实现的](#13redis%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%BA%8B%E5%8A%A1%E5%90%97%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84)
-    * [14\.谈一下缓存穿透](#14%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F)
-    * [15\.谈一下缓存击穿](#15%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF)
-    * [16\.谈一下缓存雪崩](#16%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9)
-    * [17\.如何保证缓存和数据库数据的一致性](#17%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7)
-    * [18\.redis主从怎么复制的？从节点挂掉之后重新启动，怎么跟主节点保持一致？](#18redis%E4%B8%BB%E4%BB%8E%E6%80%8E%E4%B9%88%E5%A4%8D%E5%88%B6%E7%9A%84%E4%BB%8E%E8%8A%82%E7%82%B9%E6%8C%82%E6%8E%89%E4%B9%8B%E5%90%8E%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8%E6%80%8E%E4%B9%88%E8%B7%9F%E4%B8%BB%E8%8A%82%E7%82%B9%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
-    * [19\.谈一下Redis集群方式。sentinel工作原理？Redis cluster工作原理？](#19%E8%B0%88%E4%B8%80%E4%B8%8Bredis%E9%9B%86%E7%BE%A4%E6%96%B9%E5%BC%8Fsentinel%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86redis-cluster%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
-    * [20\.谈一下AOF中，AOF重写的目的](#20%E8%B0%88%E4%B8%80%E4%B8%8Baof%E4%B8%ADaof%E9%87%8D%E5%86%99%E7%9A%84%E7%9B%AE%E7%9A%84)
-    * [21\.Redis有一个分布式锁，有什么弊端？怎么解决？](#21redis%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%9C%89%E4%BB%80%E4%B9%88%E5%BC%8A%E7%AB%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3)
-    * [22\.谈一下Redis的内存回收机制](#22%E8%B0%88%E4%B8%80%E4%B8%8Bredis%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6)
-    * [23\.如何用Redis实现一个延时队列？](#23%E5%A6%82%E4%BD%95%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97)
-    * [24.Redis中，怎么避免big key的产生？](#24redis%E4%B8%AD%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8Dbig-key%E7%9A%84%E4%BA%A7%E7%94%9F)
+    * [应用场景及数据结构算法](#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95)
+      * [1\.简述缓存的基本思想](#1%E7%AE%80%E8%BF%B0%E7%BC%93%E5%AD%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3)
+      * [2\.为什么要用分布式缓存 \- 不直接用本地缓存](#2%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98---%E4%B8%8D%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98)
+      * [3\.简单介绍一下redis](#3%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Bredis)
+      * [4\.redis和memcached的区别和共同点](#4redis%E5%92%8Cmemcached%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%85%B1%E5%90%8C%E7%82%B9)
+      * [5\.为什么要用缓存/为什么要用redis](#5%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BC%93%E5%AD%98%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8redis)
+      * [6\.redis给缓存数据设置过期时间有啥用](#6redis%E7%BB%99%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E8%AE%BE%E7%BD%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E6%9C%89%E5%95%A5%E7%94%A8)
+      * [7\.redis可以实现事务吗？如何实现的](#7redis%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%BA%8B%E5%8A%A1%E5%90%97%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84)
+      * [8\.如何利用Redis实现乐观锁？](#8%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81)
+      * [9\.了解Redis的管道吗？有什么好处？](#9%E4%BA%86%E8%A7%A3redis%E7%9A%84%E7%AE%A1%E9%81%93%E5%90%97%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84)
+      * [10\.谈一下缓存穿透](#10%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F)
+      * [11\.谈一下缓存击穿](#11%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF)
+      * [12\.谈一下缓存雪崩](#12%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9)
+      * [13\.Redis有一个分布式锁，有什么弊端？怎么解决？](#13redis%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%9C%89%E4%BB%80%E4%B9%88%E5%BC%8A%E7%AB%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3)
+      * [14\.如何保证缓存和数据库数据的一致性？](#14%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7)
+      * [15\.Redis中，big key有哪些危害？怎么避免？](#15redis%E4%B8%ADbig-key%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8D%B1%E5%AE%B3%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D)
+      * [16\.常见数据结构及使用场景](#16%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
+      * [17\.为什么Redis选择使用跳表而不是红黑树来实现有序集合？](#17%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%80%89%E6%8B%A9%E4%BD%BF%E7%94%A8%E8%B7%B3%E8%A1%A8%E8%80%8C%E4%B8%8D%E6%98%AF%E7%BA%A2%E9%BB%91%E6%A0%91%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88)
+      * [18\.聊一下ziplist、quicklist、intset](#18%E8%81%8A%E4%B8%80%E4%B8%8Bziplistquicklistintset)
+      * [19\.聊一下Hyperloglog](#19%E8%81%8A%E4%B8%80%E4%B8%8Bhyperloglog)
+      * [20\.什么是一致性哈希算法？什么是哈希槽？](#20%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%88%E5%B8%8C%E6%A7%BD)
+      * [21\.keys \* 有什么风险？该怎么解决？](#21keys--%E6%9C%89%E4%BB%80%E4%B9%88%E9%A3%8E%E9%99%A9%E8%AF%A5%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3)
+      * [22\.如何用Redis实现一个延时队列？](#22%E5%A6%82%E4%BD%95%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97)
+      * [23\.如何用Redis实现购物车功能？](#23%E5%A6%82%E4%BD%95%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%8A%9F%E8%83%BD)
+      * [24\.如何用Redis实现微信微博点赞功能？](#24%E5%A6%82%E4%BD%95%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E5%BE%AE%E4%BF%A1%E5%BE%AE%E5%8D%9A%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD)
+      * [25\.如何用Redis实现微博关注功能中，你可能认识的人？你和他的共同好友？](#25%E5%A6%82%E4%BD%95%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E5%BE%AE%E5%8D%9A%E5%85%B3%E6%B3%A8%E5%8A%9F%E8%83%BD%E4%B8%AD%E4%BD%A0%E5%8F%AF%E8%83%BD%E8%AE%A4%E8%AF%86%E7%9A%84%E4%BA%BA%E4%BD%A0%E5%92%8C%E4%BB%96%E7%9A%84%E5%85%B1%E5%90%8C%E5%A5%BD%E5%8F%8B)
+      * [26\.如何利用Redis实现微信抽奖功能？一次抽奖抽出六个人 或 多次抽奖包含三等奖、二等奖、一等奖](#26%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E5%BE%AE%E4%BF%A1%E6%8A%BD%E5%A5%96%E5%8A%9F%E8%83%BD%E4%B8%80%E6%AC%A1%E6%8A%BD%E5%A5%96%E6%8A%BD%E5%87%BA%E5%85%AD%E4%B8%AA%E4%BA%BA-%E6%88%96-%E5%A4%9A%E6%AC%A1%E6%8A%BD%E5%A5%96%E5%8C%85%E5%90%AB%E4%B8%89%E7%AD%89%E5%A5%96%E4%BA%8C%E7%AD%89%E5%A5%96%E4%B8%80%E7%AD%89%E5%A5%96)
+      * [27\.如何利用Redis实现微博热搜？](#27%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E5%BE%AE%E5%8D%9A%E7%83%AD%E6%90%9C)
+      * [28\.如何利用Redis实现电商中，根据各个标签筛选商品？一个商品可能涉及多个标签](#28%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E7%94%B5%E5%95%86%E4%B8%AD%E6%A0%B9%E6%8D%AE%E5%90%84%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%AD%9B%E9%80%89%E5%95%86%E5%93%81%E4%B8%80%E4%B8%AA%E5%95%86%E5%93%81%E5%8F%AF%E8%83%BD%E6%B6%89%E5%8F%8A%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE)
+      * [29\.如何利用Redis实现附近的人？](#29%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8redis%E5%AE%9E%E7%8E%B0%E9%99%84%E8%BF%91%E7%9A%84%E4%BA%BA)
+      * [30\.Redis中有一个限流模块，了解过吗？谈一下几大限流算法](#30redis%E4%B8%AD%E6%9C%89%E4%B8%80%E4%B8%AA%E9%99%90%E6%B5%81%E6%A8%A1%E5%9D%97%E4%BA%86%E8%A7%A3%E8%BF%87%E5%90%97%E8%B0%88%E4%B8%80%E4%B8%8B%E5%87%A0%E5%A4%A7%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95)
+      * [31\.怎么设计一套秒杀系统？](#31%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%A5%97%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F)
+    * [工作机制](#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6)
+      * [1\.缓存读写模式及更新策略](#1%E7%BC%93%E5%AD%98%E8%AF%BB%E5%86%99%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5)
+        * [Read/Write Through Pattern（读写穿透）](#readwrite-through-pattern%E8%AF%BB%E5%86%99%E7%A9%BF%E9%80%8F)
+        * [Write Behind Pattern（异步缓存写入）](#write-behind-pattern%E5%BC%82%E6%AD%A5%E7%BC%93%E5%AD%98%E5%86%99%E5%85%A5)
+      * [2\.为什么redis选择单线程模型](#2%E4%B8%BA%E4%BB%80%E4%B9%88redis%E9%80%89%E6%8B%A9%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B)
+      * [3\.缓存淘汰机制了解吗？有什么算法？](#3%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6%E4%BA%86%E8%A7%A3%E5%90%97%E6%9C%89%E4%BB%80%E4%B9%88%E7%AE%97%E6%B3%95)
+      * [4\.谈一下Redis的内存回收机制](#4%E8%B0%88%E4%B8%80%E4%B8%8Bredis%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6)
+      * [5\.如何判断数据是否过期的及过期数据的删除策略](#5%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E8%BF%87%E6%9C%9F%E7%9A%84%E5%8F%8A%E8%BF%87%E6%9C%9F%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5)
+      * [6\.主从架构中，怎么执行删除过期key的？](#6%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%80%8E%E4%B9%88%E6%89%A7%E8%A1%8C%E5%88%A0%E9%99%A4%E8%BF%87%E6%9C%9Fkey%E7%9A%84)
+      * [7\.怎么保证redis挂掉之后再重启数据可以进行恢复（redis的持久化）](#7%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81redis%E6%8C%82%E6%8E%89%E4%B9%8B%E5%90%8E%E5%86%8D%E9%87%8D%E5%90%AF%E6%95%B0%E6%8D%AE%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E6%81%A2%E5%A4%8Dredis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96)
+      * [7\.谈一下AOF中，AOF重写的目的](#7%E8%B0%88%E4%B8%80%E4%B8%8Baof%E4%B8%ADaof%E9%87%8D%E5%86%99%E7%9A%84%E7%9B%AE%E7%9A%84)
+      * [8\.Redis是怎么实现RDB的？聊一下fork子进程的工作过程](#8redis%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0rdb%E7%9A%84%E8%81%8A%E4%B8%80%E4%B8%8Bfork%E5%AD%90%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B)
+      * [9\.RDB中，save 和 bgsave有啥区别？](#9rdb%E4%B8%ADsave-%E5%92%8C-bgsave%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB)
+      * [10\.能解释下什么是RESP？有什么特点？Redis是怎么用的？](#10%E8%83%BD%E8%A7%A3%E9%87%8A%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AFresp%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9redis%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84)
+    * [集群](#%E9%9B%86%E7%BE%A4)
+      * [1\.redis主从怎么复制的？有哪些方案？](#1redis%E4%B8%BB%E4%BB%8E%E6%80%8E%E4%B9%88%E5%A4%8D%E5%88%B6%E7%9A%84%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%A1%88)
+      * [2\.从节点挂掉之后重新启动，怎么跟主节点保持一致？会有什么问题吗？](#2%E4%BB%8E%E8%8A%82%E7%82%B9%E6%8C%82%E6%8E%89%E4%B9%8B%E5%90%8E%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8%E6%80%8E%E4%B9%88%E8%B7%9F%E4%B8%BB%E8%8A%82%E7%82%B9%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4%E4%BC%9A%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E5%90%97)
+      * [3\.谈一下Redis集群方式。sentinel工作原理？Redis cluster工作原理？](#3%E8%B0%88%E4%B8%80%E4%B8%8Bredis%E9%9B%86%E7%BE%A4%E6%96%B9%E5%BC%8Fsentinel%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86redis-cluster%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
+      * [4\.谈一下 CAP，Redis符合哪些？为什么？](#4%E8%B0%88%E4%B8%80%E4%B8%8B-capredis%E7%AC%A6%E5%90%88%E5%93%AA%E4%BA%9B%E4%B8%BA%E4%BB%80%E4%B9%88)
+      * [5\.sentinel 和 Redis cluster对比一下，有哪些优缺点？](#5sentinel-%E5%92%8C-redis-cluster%E5%AF%B9%E6%AF%94%E4%B8%80%E4%B8%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E7%BC%BA%E7%82%B9)
+      * [6\.谈一下Redis cluster中槽位是怎么转移的？](#6%E8%B0%88%E4%B8%80%E4%B8%8Bredis-cluster%E4%B8%AD%E6%A7%BD%E4%BD%8D%E6%98%AF%E6%80%8E%E4%B9%88%E8%BD%AC%E7%A7%BB%E7%9A%84)
+      * [7\.Redis cluster中，\-MOVED 和 \-asking的区别？](#7redis-cluster%E4%B8%AD-moved-%E5%92%8C--asking%E7%9A%84%E5%8C%BA%E5%88%AB)
+      * [8\.Redis cluster中，客户端会缓存一份槽位信息映射表。当槽位发生变化后，客户端是怎么感知的？](#8redis-cluster%E4%B8%AD%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BC%9A%E7%BC%93%E5%AD%98%E4%B8%80%E4%BB%BD%E6%A7%BD%E4%BD%8D%E4%BF%A1%E6%81%AF%E6%98%A0%E5%B0%84%E8%A1%A8%E5%BD%93%E6%A7%BD%E4%BD%8D%E5%8F%91%E7%94%9F%E5%8F%98%E5%8C%96%E5%90%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%98%AF%E6%80%8E%E4%B9%88%E6%84%9F%E7%9F%A5%E7%9A%84)
+      * [9\.集群节点变更后，客户端是怎么感知的？](#9%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9%E5%8F%98%E6%9B%B4%E5%90%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%98%AF%E6%80%8E%E4%B9%88%E6%84%9F%E7%9F%A5%E7%9A%84)
+      * [10\.Redis cluster是怎么处理网络抖动的？](#10redis-cluster%E6%98%AF%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%E7%BD%91%E7%BB%9C%E6%8A%96%E5%8A%A8%E7%9A%84)
+      * [11\.谈一下Redis cluster中的 GOSIP 协议](#11%E8%B0%88%E4%B8%80%E4%B8%8Bredis-cluster%E4%B8%AD%E7%9A%84-gosip-%E5%8D%8F%E8%AE%AE)
 
 # 并发
 
@@ -143,6 +187,10 @@
 ### 7.sleep()方法和wait()方法的区别/共同点
 
 ### 8.是否可以直接调用run()  不限start()再run()?
+
+### 9.用过CAS吗？会发生什么问题？怎么解决？
+
+### 10.如何创建多线程？
 
 ## synchronized
 
@@ -172,7 +220,7 @@
 
 ## ThreadLocal
 
-### 1.介绍一下是什么及原理
+### 1.介绍一下是什么及原理、运用场景
 
 ### 2.ThreadLocal 内存泄漏的问题
 
@@ -190,9 +238,11 @@
 
 ### 6.谈下原理
 
+### 7.谈一下线程池七大参数及拒绝策略？
+
 ## Atomic 原子类
 
-### 1.介绍一下 ..
+### 1.介绍一下，不使用它会有什么问题 ..
 
 ### 2.JUC包中的原子类是哪四类
 
@@ -208,9 +258,25 @@
 
 ### 3.组件
 
-### 4.用过CountDownLatch吗 什么场景用的
-
 ## Reference
+
+### 1.谈一下强软弱虚引用，各有哪些应用场景？
+
+## JUC
+
+### 1.用过CountDownLatch、CyclicBarrier、Semaphore吗 什么场景用的？有什么区别？能否复用？
+
+### 2.聊一下HashMap底层原理，有过什么变化，会发生什么问题？对应的支持高并发的类聊下原理？
+
+### 3.聊一下线程安全的list、set，底层原理（CopyOnWriteArrayList、CopyOnwriteArraySet）
+
+### 4.聊一下ConcurrentSkipListMap，有哪些应用场景
+
+### 5.Feture接口是怎么使用的？
+
+### 6.聊一下锁机制？什么是非公平锁/公平锁/可重入锁/互斥锁？
+
+### 7.阻塞队列和非阻塞队列有什么区别？有哪些运用场景？
 
 # Mysql
 
@@ -316,6 +382,8 @@
 
 # Redis
 
+## 应用场景及数据结构算法
+
 ### 1.简述缓存的基本思想
 
 - 可以提高系统性能以及减少请求响应时间。基本思想是空间换时间,cpu缓存的是内存数据-用于解决CPU运算速度和内存读写速度不匹配的问题 内存缓存的是硬盘的数据 用于解决硬盘访问速度过慢的问题 操作系统在页表方案基础上引入快表加速虚拟地址到物理地址的转换 那么块表可以理解为一种特殊的高速缓冲存储器。从业务的角度,为了避免用户在请求数据时获取速度过于缓慢，在数据库之上增加了缓存
@@ -327,7 +395,71 @@
 
 使用分布式缓存后，缓存部署在一台单独的服务器上，即使同一份服务部署在多台服务器上，使用的是同一份缓存。单独分布式缓存服务的性能 容量和提供的功能都要强大
 
-### 3.缓存读写模式及更新策略
+### 3.简单介绍一下redis
+
+c语言开发的数据库,数据是存放在内存中的，所以读写速度非常快。被广泛用于缓存方向，除此之外 经常被用来用分布式锁/消息队列等 提供了多种数据类型来支持不同的业务场景，支持事务/持久化/Lua脚本/多种集群方案
+
+### 4.redis和memcached的区别和共同点
+
+https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/Redis/redis-all.md
+
+### 5.为什么要用缓存/为什么要用redis
+
+### 6.redis给缓存数据设置过期时间有啥用
+
+### 7.redis可以实现事务吗？如何实现的
+
+### 8.如何利用Redis实现乐观锁？
+
+### 9.了解Redis的管道吗？有什么好处？
+
+### 10.谈一下缓存穿透
+
+### 11.谈一下缓存击穿
+
+### 12.谈一下缓存雪崩
+
+### 13.Redis有一个分布式锁，有什么弊端？怎么解决？
+
+### 14.如何保证缓存和数据库数据的一致性？
+
+### 15.Redis中，big key有哪些危害？怎么避免？
+
+### 16.常见数据结构及使用场景
+
+### 17.为什么Redis选择使用跳表而不是红黑树来实现有序集合？
+
+### 18.聊一下ziplist、quicklist、intset
+
+### 19.聊一下Hyperloglog
+
+### 20.什么是一致性哈希算法？什么是哈希槽？
+
+### 21.keys * 有什么风险？该怎么解决？
+
+### 22.如何用Redis实现一个延时队列？
+
+### 23.如何用Redis实现购物车功能？
+
+### 24.如何用Redis实现微信微博点赞功能？
+
+### 25.如何用Redis实现微博关注功能中，你可能认识的人？你和他的共同好友？
+
+### 26.如何利用Redis实现微信抽奖功能？一次抽奖抽出六个人 或 多次抽奖包含三等奖、二等奖、一等奖
+
+### 27.如何利用Redis实现微博热搜？
+
+### 28.如何利用Redis实现电商中，根据各个标签筛选商品？一个商品可能涉及多个标签
+
+### 29.如何利用Redis实现附近的人？
+
+### 30.Redis中有一个限流模块，了解过吗？谈一下几大限流算法
+
+### 31.怎么设计一套秒杀系统？
+
+## 工作机制
+
+### 1.缓存读写模式及更新策略
 
 - Cache Aside Pattern（旁路缓存模式）
 
@@ -360,50 +492,52 @@ Write Behind Pattern 和 Read/Write Through Pattern 很相似，两者都是由 
 
 但是，这种模式同样也给 DB 和 Cache 一致性带来了新的考验，很多时候如果数据还没异步更新到 DB 的话，Cache 服务宕机就 gg 了。
 
-### 4.简单介绍一下redis
-
-c语言开发的数据库,数据是存放在内存中的，所以读写速度非常快。被广泛用于缓存方向，除此之外 经常被用来用分布式锁/消息队列等 提供了多种数据类型来支持不同的业务场景，支持事务/持久化/Lua脚本/多种集群方案
-
-### 5.redis和memcached的区别和共同点
-
-https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/Redis/redis-all.md
-
-### 6.为什么要用缓存/为什么要用redis
-
-### 7.常见数据结构及使用场景
-
-### 8.为什么redis选择单线程模型
+### 2.为什么redis选择单线程模型
 
 https://draveness.me/whys-the-design-redis-single-thread/
 
-### 9.redis给缓存数据设置过期时间有啥用
+### 3.缓存淘汰机制了解吗？有什么算法？
 
-### 10.如何判断数据是否过期的及过期数据的删除策略
+（LRU+贪心算法）
 
-### 11.内存淘汰机制了解吗
+### 4.谈一下Redis的内存回收机制
 
-### 12.怎么保证redis挂掉之后再重启数据可以进行恢复（redis的持久化）
+（数据页）
 
-### 13.redis可以实现事务吗？如何实现的
+### 5.如何判断数据是否过期的及过期数据的删除策略
 
-### 14.谈一下缓存穿透
+### 6.主从架构中，怎么执行删除过期key的？
 
-### 15.谈一下缓存击穿
+### 7.怎么保证redis挂掉之后再重启数据可以进行恢复（redis的持久化）
 
-### 16.谈一下缓存雪崩
+### 7.谈一下AOF中，AOF重写的目的
 
-### 17.如何保证缓存和数据库数据的一致性
+### 8.Redis是怎么实现RDB的？聊一下fork子进程的工作过程
 
-### 18.redis主从怎么复制的？从节点挂掉之后重新启动，怎么跟主节点保持一致？
+### 9.RDB中，save 和 bgsave有啥区别？
 
-### 19.谈一下Redis集群方式。sentinel工作原理？Redis cluster工作原理？ 
+### 10.能解释下什么是RESP？有什么特点？Redis是怎么用的？
 
-### 20.谈一下AOF中，AOF重写的目的 
+## 集群
 
-### 21.Redis有一个分布式锁，有什么弊端？怎么解决？ 
+### 1.redis主从怎么复制的？有哪些方案？
 
-### 22.谈一下Redis的内存回收机制 
+### 2.从节点挂掉之后重新启动，怎么跟主节点保持一致？会有什么问题吗？
 
-### 23.如何用Redis实现一个延时队列？ 
+### 3.谈一下Redis集群方式。sentinel工作原理？Redis cluster工作原理？
 
-### 24.Redis中，怎么避免big key的产生？ 
+### 4.谈一下 CAP，Redis符合哪些？为什么？
+
+### 5.sentinel 和 Redis cluster对比一下，有哪些优缺点？
+
+### 6.谈一下Redis cluster中槽位是怎么转移的？
+
+### 7.Redis cluster中，-MOVED 和 -asking的区别？
+
+### 8.Redis cluster中，客户端会缓存一份槽位信息映射表。当槽位发生变化后，客户端是怎么感知的？
+
+### 9.集群节点变更后，客户端是怎么感知的？
+
+### 10.Redis cluster是怎么处理网络抖动的？
+
+### 11.谈一下Redis cluster中的 GOSIP 协议
