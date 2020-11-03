@@ -3,49 +3,60 @@
 看目录自己面试，答案在下边,会慢慢补充。
 
 * [并发](#%E5%B9%B6%E5%8F%91)
-  * [基础](#%E5%9F%BA%E7%A1%80)
-    * [1\.线程进程含义&amp;关系&amp;区别&amp;优缺点](#1%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B%E5%90%AB%E4%B9%89%E5%85%B3%E7%B3%BB%E5%8C%BA%E5%88%AB%E4%BC%98%E7%BC%BA%E7%82%B9)
-    * [2\.并发与并行的区别](#2%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB)
-    * [3\.为何使用多线程 可能带来的问题](#3%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%8F%AF%E8%83%BD%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98)
-    * [4\.线程的生命周期和状态](#4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E7%8A%B6%E6%80%81)
-    * [5\.什么是上下文切换](#5%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2)
-    * [6\.线程死锁？如何避免？](#6%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D)
-    * [7\.sleep()方法和wait()方法的区别/共同点](#7sleep%E6%96%B9%E6%B3%95%E5%92%8Cwait%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E5%85%B1%E5%90%8C%E7%82%B9)
-    * [8\.是否可以直接调用run()  不限start()再run()?](#8%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8run--%E4%B8%8D%E9%99%90start%E5%86%8Drun)
-  * [synchronized](#synchronized)
-    * [1\.谈谈自己对于synchronized关键字的了解](#1%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E5%AF%B9%E4%BA%8Esynchronized%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BA%86%E8%A7%A3)
-    * [2\.谈谈自己是怎么使用此关键字](#2%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97)
-    * [3\.构造方法可以使用他修饰吗](#3%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%96%E4%BF%AE%E9%A5%B0%E5%90%97)
-    * [4\.谈下底层原理](#4%E8%B0%88%E4%B8%8B%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86)
-    * [5\.谈下1\.6后底层做了哪些优化,详细介绍一下](#5%E8%B0%88%E4%B8%8B16%E5%90%8E%E5%BA%95%E5%B1%82%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8C%96%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B)
-    * [6\.谈谈synchronized和ReentrantLock区别](#6%E8%B0%88%E8%B0%88synchronized%E5%92%8Creentrantlock%E5%8C%BA%E5%88%AB)
-  * [volatile](#volatile)
-    * [1\.CPU缓存模型](#1cpu%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B)
-    * [2\.讲一下JMM](#2%E8%AE%B2%E4%B8%80%E4%B8%8Bjmm)
-    * [3\.并发编程的三个重要特性](#3%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7)
-    * [4\.介绍一下对此关键字的理解](#4%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E5%AF%B9%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3)
-    * [5\.synchronized 与volatile 的区别](#5synchronized-%E4%B8%8Evolatile-%E7%9A%84%E5%8C%BA%E5%88%AB)
-  * [ThreadLocal](#threadlocal)
-    * [1\.介绍一下是什么及原理](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%8F%8A%E5%8E%9F%E7%90%86)
-    * [2\.ThreadLocal 内存泄漏的问题](#2threadlocal-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98)
-  * [线程池](#%E7%BA%BF%E7%A8%8B%E6%B1%A0)
-    * [1\.为什么要使用线程池](#1%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0)
-    * [2\.实现Runnable和Callable接口的区别](#2%E5%AE%9E%E7%8E%B0runnable%E5%92%8Ccallable%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB)
-    * [3\.execute（） 与submit（） 区别](#3execute-%E4%B8%8Esubmit-%E5%8C%BA%E5%88%AB)
-    * [4\.如何创建线程池](#4%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0)
-    * [5\.ThreadPoolExecutor类分析](#5threadpoolexecutor%E7%B1%BB%E5%88%86%E6%9E%90)
-    * [6\.谈下原理](#6%E8%B0%88%E4%B8%8B%E5%8E%9F%E7%90%86)
-  * [Atomic 原子类](#atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB)
-    * [1\.介绍一下 \.\.](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-)
-    * [2\.JUC包中的原子类是哪四类](#2juc%E5%8C%85%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%98%AF%E5%93%AA%E5%9B%9B%E7%B1%BB)
-    * [3\.讲讲AtomicInteger的使用](#3%E8%AE%B2%E8%AE%B2atomicinteger%E7%9A%84%E4%BD%BF%E7%94%A8)
-    * [4\.简单介绍一下AtomicInteger类的原理](#4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Batomicinteger%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86)
-  * [AQS](#aqs)
-    * [1\.介绍一下AQS](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Baqs)
-    * [2\.AQS原理分析](#2aqs%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90)
-    * [3\.组件](#3%E7%BB%84%E4%BB%B6)
-    * [4\.用过CountDownLatch吗 什么场景用的](#4%E7%94%A8%E8%BF%87countdownlatch%E5%90%97-%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E7%94%A8%E7%9A%84)
-  * [Reference](#reference)
+    * [基础](#%E5%9F%BA%E7%A1%80)
+      * [1\.线程进程含义&amp;关系&amp;区别&amp;优缺点](#1%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B%E5%90%AB%E4%B9%89%E5%85%B3%E7%B3%BB%E5%8C%BA%E5%88%AB%E4%BC%98%E7%BC%BA%E7%82%B9)
+      * [2\.并发与并行的区别](#2%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB)
+      * [3\.为何使用多线程 可能带来的问题](#3%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%8F%AF%E8%83%BD%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98)
+      * [4\.线程的生命周期和状态](#4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E7%8A%B6%E6%80%81)
+      * [5\.什么是上下文切换](#5%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2)
+      * [6\.线程死锁？如何避免？](#6%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D)
+      * [7\.sleep()方法和wait()方法的区别/共同点](#7sleep%E6%96%B9%E6%B3%95%E5%92%8Cwait%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E5%85%B1%E5%90%8C%E7%82%B9)
+      * [8\.是否可以直接调用run()  不限start()再run()?](#8%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8run--%E4%B8%8D%E9%99%90start%E5%86%8Drun)
+      * [9\.用过CAS吗？会发生什么问题？怎么解决？](#9%E7%94%A8%E8%BF%87cas%E5%90%97%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3)
+      * [10\.如何创建多线程？](#10%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B)
+    * [synchronized](#synchronized)
+      * [1\.谈谈自己对于synchronized关键字的了解](#1%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E5%AF%B9%E4%BA%8Esynchronized%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BA%86%E8%A7%A3)
+      * [2\.谈谈自己是怎么使用此关键字](#2%E8%B0%88%E8%B0%88%E8%87%AA%E5%B7%B1%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97)
+      * [3\.构造方法可以使用他修饰吗](#3%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%96%E4%BF%AE%E9%A5%B0%E5%90%97)
+      * [4\.谈下底层原理](#4%E8%B0%88%E4%B8%8B%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86)
+      * [5\.谈下1\.6后底层做了哪些优化,详细介绍一下](#5%E8%B0%88%E4%B8%8B16%E5%90%8E%E5%BA%95%E5%B1%82%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8C%96%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B)
+      * [6\.谈谈synchronized和ReentrantLock区别](#6%E8%B0%88%E8%B0%88synchronized%E5%92%8Creentrantlock%E5%8C%BA%E5%88%AB)
+    * [volatile](#volatile)
+      * [1\.CPU缓存模型](#1cpu%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9E%8B)
+      * [2\.讲一下JMM](#2%E8%AE%B2%E4%B8%80%E4%B8%8Bjmm)
+      * [3\.并发编程的三个重要特性](#3%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7)
+      * [4\.介绍一下对此关键字的理解](#4%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E5%AF%B9%E6%AD%A4%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3)
+      * [5\.synchronized 与volatile 的区别](#5synchronized-%E4%B8%8Evolatile-%E7%9A%84%E5%8C%BA%E5%88%AB)
+    * [ThreadLocal](#threadlocal)
+      * [1\.介绍一下是什么及原理、运用场景](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%8F%8A%E5%8E%9F%E7%90%86%E8%BF%90%E7%94%A8%E5%9C%BA%E6%99%AF)
+      * [2\.ThreadLocal 内存泄漏的问题](#2threadlocal-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98)
+    * [线程池](#%E7%BA%BF%E7%A8%8B%E6%B1%A0)
+      * [1\.为什么要使用线程池](#1%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0)
+      * [2\.实现Runnable和Callable接口的区别](#2%E5%AE%9E%E7%8E%B0runnable%E5%92%8Ccallable%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB)
+      * [3\.execute（） 与submit（） 区别](#3execute-%E4%B8%8Esubmit-%E5%8C%BA%E5%88%AB)
+      * [4\.如何创建线程池](#4%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0)
+      * [5\.ThreadPoolExecutor类分析](#5threadpoolexecutor%E7%B1%BB%E5%88%86%E6%9E%90)
+      * [6\.谈下原理](#6%E8%B0%88%E4%B8%8B%E5%8E%9F%E7%90%86)
+      * [7\.谈一下线程池七大参数及拒绝策略？](#7%E8%B0%88%E4%B8%80%E4%B8%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%83%E5%A4%A7%E5%8F%82%E6%95%B0%E5%8F%8A%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5)
+    * [Atomic 原子类](#atomic-%E5%8E%9F%E5%AD%90%E7%B1%BB)
+      * [1\.介绍一下，不使用它会有什么问题 \.\.](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%AE%83%E4%BC%9A%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98-)
+      * [2\.JUC包中的原子类是哪四类](#2juc%E5%8C%85%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%98%AF%E5%93%AA%E5%9B%9B%E7%B1%BB)
+      * [3\.讲讲AtomicInteger的使用](#3%E8%AE%B2%E8%AE%B2atomicinteger%E7%9A%84%E4%BD%BF%E7%94%A8)
+      * [4\.简单介绍一下AtomicInteger类的原理](#4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Batomicinteger%E7%B1%BB%E7%9A%84%E5%8E%9F%E7%90%86)
+    * [AQS](#aqs)
+      * [1\.介绍一下AQS](#1%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Baqs)
+      * [2\.AQS原理分析](#2aqs%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90)
+      * [3\.组件](#3%E7%BB%84%E4%BB%B6)
+    * [Reference](#reference)
+      * [1\.谈一下强软弱虚引用，各有哪些应用场景？](#1%E8%B0%88%E4%B8%80%E4%B8%8B%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8%E5%90%84%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF)
+    * [JUC](#juc)
+      * [1\.用过CountDownLatch、CyclicBarrier、Semaphore吗 什么场景用的？有什么区别？能否复用？](#1%E7%94%A8%E8%BF%87countdownlatchcyclicbarriersemaphore%E5%90%97-%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E7%94%A8%E7%9A%84%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E8%83%BD%E5%90%A6%E5%A4%8D%E7%94%A8)
+      * [2\.聊一下HashMap底层原理，有过什么变化，会发生什么问题？对应的支持高并发的类聊下原理？](#2%E8%81%8A%E4%B8%80%E4%B8%8Bhashmap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%9C%89%E8%BF%87%E4%BB%80%E4%B9%88%E5%8F%98%E5%8C%96%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E5%AF%B9%E5%BA%94%E7%9A%84%E6%94%AF%E6%8C%81%E9%AB%98%E5%B9%B6%E5%8F%91%E7%9A%84%E7%B1%BB%E8%81%8A%E4%B8%8B%E5%8E%9F%E7%90%86)
+      * [3\.聊一下线程安全的list、set，底层原理（CopyOnWriteArrayList、CopyOnwriteArraySet）](#3%E8%81%8A%E4%B8%80%E4%B8%8B%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84listset%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86copyonwritearraylistcopyonwritearrayset)
+      * [4\.聊一下ConcurrentSkipListMap，有哪些应用场景](#4%E8%81%8A%E4%B8%80%E4%B8%8Bconcurrentskiplistmap%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF)
+      * [5\.Feture接口是怎么使用的？](#5feture%E6%8E%A5%E5%8F%A3%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E7%9A%84)
+      * [6\.聊一下锁机制？什么是非公平锁/公平锁/可重入锁/互斥锁？](#6%E8%81%8A%E4%B8%80%E4%B8%8B%E9%94%81%E6%9C%BA%E5%88%B6%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E5%85%AC%E5%B9%B3%E9%94%81%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E4%BA%92%E6%96%A5%E9%94%81)
+      * [7\.阻塞队列和非阻塞队列有什么区别？有哪些运用场景？](#7%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%E8%BF%90%E7%94%A8%E5%9C%BA%E6%99%AF)
 * [Mysql](#mysql)
   * [架构相关](#%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3)
     * [1\.结合MySQL架构，聊一下SQL的执行过程](#1%E7%BB%93%E5%90%88mysql%E6%9E%B6%E6%9E%84%E8%81%8A%E4%B8%80%E4%B8%8Bsql%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B)
@@ -177,6 +188,10 @@
 
 ### 8.是否可以直接调用run()  不限start()再run()?
 
+### 9.用过CAS吗？会发生什么问题？怎么解决？
+
+### 10.如何创建多线程？
+
 ## synchronized
 
 ### 1.谈谈自己对于synchronized关键字的了解
@@ -205,7 +220,7 @@
 
 ## ThreadLocal
 
-### 1.介绍一下是什么及原理
+### 1.介绍一下是什么及原理、运用场景
 
 ### 2.ThreadLocal 内存泄漏的问题
 
@@ -223,9 +238,11 @@
 
 ### 6.谈下原理
 
+### 7.谈一下线程池七大参数及拒绝策略？
+
 ## Atomic 原子类
 
-### 1.介绍一下 ..
+### 1.介绍一下，不使用它会有什么问题 ..
 
 ### 2.JUC包中的原子类是哪四类
 
@@ -241,9 +258,25 @@
 
 ### 3.组件
 
-### 4.用过CountDownLatch吗 什么场景用的
-
 ## Reference
+
+### 1.谈一下强软弱虚引用，各有哪些应用场景？
+
+## JUC
+
+### 1.用过CountDownLatch、CyclicBarrier、Semaphore吗 什么场景用的？有什么区别？能否复用？
+
+### 2.聊一下HashMap底层原理，有过什么变化，会发生什么问题？对应的支持高并发的类聊下原理？
+
+### 3.聊一下线程安全的list、set，底层原理（CopyOnWriteArrayList、CopyOnwriteArraySet）
+
+### 4.聊一下ConcurrentSkipListMap，有哪些应用场景
+
+### 5.Feture接口是怎么使用的？
+
+### 6.聊一下锁机制？什么是非公平锁/公平锁/可重入锁/互斥锁？
+
+### 7.阻塞队列和非阻塞队列有什么区别？有哪些运用场景？
 
 # Mysql
 
